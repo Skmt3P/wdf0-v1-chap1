@@ -1,0 +1,35 @@
+/*
+* COLOR SETTING
+* Color Pallet Ref: https: //palx.jxnblk.com/
+*/
+
+// Theme A (oi-deyo MACHIDA color)
+$theme-A-0 : #ebeefe;
+$theme-A-1 : #d5dcfc;
+$theme-A-2 : #bcc8fb;
+$theme-A-3 : #9fb1fa;
+$theme-A-4 : #7b94f8;
+$theme-A-5 : #4a6cf6;
+$theme-A-6 : #4261dd;
+$theme-A-7 : #3a55c1;
+$theme-A-8 : #2f469f;
+$theme-A-9 : #213170;
+
+// Theme B (oi-deyo SAGAMIHARA color)
+$theme-B-0 : #e7fae8;
+$theme-B-1 : #cef4d0;
+$theme-B-2 : #b1eeb5;
+$theme-B-3 : #91e795;
+$theme-B-4 : #6ade70;
+$theme-B-5 : #38d440;
+$theme-B-6 : #32bf39;
+$theme-B-7 : #2ca832;
+$theme-B-8 : #248c2a;
+$theme-B-9 : #1a651e;
+
+// TheLoading.vue
+$text-color : $theme-A-4;
+$text-shadow : $theme-A-2;
+
+// TheNavbar.vue
+$navbar-bgcolor : $theme-A-5;
