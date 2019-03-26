@@ -1,22 +1,6 @@
-# oi_machi-saga
+# wdf0-v1-chap2
+> WebDev From Zero の第1章「おいでよ！Web開発」のサンプルリポジトリ
 
-> oi-deyo Machida and Sagamihara in JAPAN unofficial web-site
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn run dev
-
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+# 権利
+LICENSEファイル参照
