@@ -27,18 +27,6 @@ exports.fetchRss = (db, funcReq, funcRes) => {
   const batch = db.batch()
   const items = []
 
-  Promise.all(
-    oideyoList.map(obj => {
-      return setBatch(obj)
-    })
-  )
-    .then(() => {
-      return doBatch()
-    })
-    .catch(err => {
-      return funcRes.status(500).send('Error adding document:', err)
-    })
-
   const setBatch = async oideyo => {
     return new Promise((resolve, reject) => {
       try {
@@ -149,4 +137,16 @@ exports.fetchRss = (db, funcReq, funcRes) => {
         return new Error()
       })
   }
+
+  Promise.all(
+    oideyoList.map(obj => {
+      return setBatch(obj)
+    })
+  )
+    .then(() => {
+      return doBatch()
+    })
+    .catch(err => {
+      return funcRes.status(500).send('Error adding document:', err)
+    })
 }
