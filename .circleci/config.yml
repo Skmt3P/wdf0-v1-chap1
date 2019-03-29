@@ -51,7 +51,7 @@ jobs:
 
       - run:
           name: Yarn clean
-          command: cd ../ && yarn clean
+          command: yarn clean
 
       - run:
           name: Firebase add
