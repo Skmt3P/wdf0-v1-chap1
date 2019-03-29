@@ -13,7 +13,7 @@
           xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
       </button>
     </div>
-    <div style="width:30%" />
+    <div style="width:50%" />
     <div
       :class="open ? 'block': 'hidden'" 
       class="w-full px-3 py-2 flex-grow sm:flex sm:items-center sm:w-auto">
@@ -26,18 +26,18 @@
         <a 
           href="#responsive-header" 
           class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
-          About
-        </a>
-        <a 
-          href="#responsive-header" 
-          class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
           Twitter
         </a>
-        <a 
+        <!-- <a 
+          href="#responsive-header" 
+          class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
+          About
+        </a> -->
+        <!-- <a 
           href="#" 
           class="no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 sm:mt-0">
           SWITCH
-        </a>
+        </a> -->
       </li>
     </div>
   </nav>
@@ -45,10 +45,14 @@
 
 <script>
 export default {
-  data: function() {
+  data: () => {
     return {
-      open: false,
-      title: ''
+      open: false
+    }
+  },
+  asyncData: () => {
+    return {
+      siteTitle: ''
     }
   },
   beforeMount() {
