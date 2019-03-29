@@ -4,12 +4,12 @@ const { Nuxt } = require('nuxt')
 const express = require('express')
 const rss = require('./rss.js')
 const app = express()
-const envs = functions.config().environment
+// const envs = functions.config().environment
 
-Object.entries(envs).forEach((k, v) => {
-  console.log(k)
-  process.env[`${k}`.toUpperCase()] = v
-})
+// Object.entries(envs).forEach((k, v) => {
+//   console.log(k)
+//   process.env[`${k}`.toUpperCase()] = v
+// })
 
 const config = {
   dev: false,
