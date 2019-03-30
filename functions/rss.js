@@ -30,7 +30,7 @@ exports.fetchRss = (db, funcReq, funcRes) => {
       try {
         console.log('setBatch: ', oideyo.themeId, oideyo.themeName)
         for (let rss in oideyo.rssList) {
-          console.log('rss,url', rss, url)
+          console.log('rss.url', rss.url)
           const req = request(rss.url)
           const feedparser = new FeedParser()
 
