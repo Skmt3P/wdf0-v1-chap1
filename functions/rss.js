@@ -1,37 +1,35 @@
-const FeedParser = require('feedparser')
-const request = require('request')
-const uniq = require('uniq')
-const dayjs = require('dayjs')
-
-const oideyoList = [
-  {
-    themeId: 'oijavascript',
-    themeName: 'おいでよJavaScript',
-    rssList: [
-      {
-        name: '町田市役所',
-        url: 'http://www.city.machida.tokyo.jp/rss_news.xml',
-        tag: 'city'
-      },
-      {
-        name: '町田イベント',
-        url:
-          'https://www.google.co.jp/alerts/feeds/03126527126696341489/12080350212799317987',
-        tag: 'event'
-      }
-    ]
-  }
-]
-
 exports.fetchRss = (db, funcReq, funcRes) => {
+  const FeedParser = require('feedparser')
+  const request = require('request')
+  const uniq = require('uniq')
+  const dayjs = require('dayjs')
   const batch = db.batch()
   const items = []
+  const oideyoList = [
+    {
+      themeId: 'oijavascript',
+      themeName: 'おいでよJavaScript',
+      rssList: [
+        {
+          name: '町田市役所',
+          url: 'http://www.city.machida.tokyo.jp/rss_news.xml',
+          tag: 'city'
+        },
+        {
+          name: '町田イベント',
+          url:
+            'https://www.google.co.jp/alerts/feeds/03126527126696341489/12080350212799317987',
+          tag: 'event'
+        }
+      ]
+    }
+  ]
 
   const setBatch = async oideyo => {
     return new Promise((resolve, reject) => {
       try {
         console.log('setBatch: ', oideyo.themeId, oideyo.themeName)
-        for (let element in oideyo.rssList) {
+        for (let rss in oideyo.rssList) {
           const req = request(rss.url)
           const feedparser = new FeedParser()
 
