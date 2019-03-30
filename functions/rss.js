@@ -30,6 +30,7 @@ exports.fetchRss = (db, funcReq, funcRes) => {
       try {
         console.log('setBatch: ', oideyo.themeId, oideyo.themeName)
         for (let rss in oideyo.rssList) {
+          console.log('rss,url', rss, url)
           const req = request(rss.url)
           const feedparser = new FeedParser()
 
@@ -39,6 +40,7 @@ exports.fetchRss = (db, funcReq, funcRes) => {
               console.log('request error', error)
             })
             .on('response', function(res) {
+              console.log('res: ', res)
               const stream = this
               if (res.statusCode !== 200) {
                 req.emit('error', new Error('Bad status code'))
@@ -59,8 +61,10 @@ exports.fetchRss = (db, funcReq, funcRes) => {
               let item = this.read()
               if (item !== null) {
                 items.push(item)
+                return true
               } else {
                 console.log('items: count == 0')
+                return false
               }
             })
             .on('end', parseEndFunc)
