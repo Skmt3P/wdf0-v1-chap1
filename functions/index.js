@@ -36,7 +36,9 @@ exports.ssr = functions.https.onRequest(app)
 // RSS取得Function
 exports.setRss = functions.https.onRequest((req, res) => {
   console.log('Set RSS in Cloud Firestore')
-  admin.initializeApp()
+  if (!admin.apps.length) {
+    admin.initializeApp({})
+  }
   const db = admin.firestore()
   rss.fetchRss(db, req, res)
 })
