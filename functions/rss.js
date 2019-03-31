@@ -3,9 +3,9 @@ exports.fetchRss = (db, funcReq, funcRes) => {
   const request = require('request')
   const uuid = require('uuid')
   const dayjs = require('dayjs')
-  const batch = db.batch()
-  const items = []
-  const maxReadRss = 100
+  const tweet = require('./tweet.js')
+  // const batch = db.batch()
+  const maxReadRss = 500
   const oideyoList = [
     {
       themeId: 'oijavascript',
@@ -30,6 +30,7 @@ exports.fetchRss = (db, funcReq, funcRes) => {
     return new Promise((resolve, reject) => {
       try {
         console.log('setBatch: ', oideyo.themeId, oideyo.themeName)
+        const items = []
         for (let rss of oideyo.rssList) {
           console.log('rss: ', rss)
           const req = request(rss.url)
@@ -56,7 +57,8 @@ exports.fetchRss = (db, funcReq, funcRes) => {
             .on('readable', () => {
               let stream = feedparser
               let item = stream.read()
-              while (item) {
+              while (item !== null) {
+                // items.push(item)
                 if (items.length < maxReadRss) {
                   items.push(item)
                 } else {
@@ -112,7 +114,6 @@ exports.fetchRss = (db, funcReq, funcRes) => {
       }
 
       if (limit > 0) {
-        console.log('items: ', items)
         for (let i = 0; i < limit; i++) {
           let item = items[i]
           if (item) {
@@ -137,10 +138,12 @@ exports.fetchRss = (db, funcReq, funcRes) => {
             }
             // 1回前に更新したデータと同一タイトルのRSSの場合は更新しない
             if (postData.title !== lastPostData.title) {
-              console.log('set前')
-              batch.set(db.collection('posts').doc(postData.id), postData)
-              console.log('set後')
+              // batch.set(db.collection('posts').doc(postData.id), postData)
+              db.collection('posts')
+                .doc(postData.id)
+                .set(postData)
               lastPostData = postData
+              tweet.tweetNuxtPage(db, postData.title, postData.id)
             } else {
               lastPostData = postData
             }
@@ -152,17 +155,17 @@ exports.fetchRss = (db, funcReq, funcRes) => {
     }
   }
 
-  const doBatch = () => {
-    console.log('doBatch')
-    batch
-      .commit()
-      .then(() => {
-        return funcRes.status(200).send('OK')
-      })
-      .catch(() => {
-        return new Error()
-      })
-  }
+  // const doBatch = () => {
+  //   console.log('doBatch')
+  //   batch
+  //     .commit()
+  //     .then(() => {
+  //       return funcRes.status(200).send('OK')
+  //     })
+  //     .catch(() => {
+  //       return new Error()
+  //     })
+  // }
 
   Promise.all(
     oideyoList.map(obj => {
@@ -171,9 +174,10 @@ exports.fetchRss = (db, funcReq, funcRes) => {
     })
   )
     .then(() => {
-      return doBatch()
+      // return doBatch()
+      return funcRes.status(200).send('OK')
     })
     .catch(err => {
-      return funcRes.status(500).send('Error adding document:', err)
+      return funcRes.status(500).send(`Error adding document: ${err}`)
     })
 }

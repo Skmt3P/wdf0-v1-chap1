@@ -41,6 +41,7 @@
     "request": "^2.88.0",
     "sass-loader": "^7.1.0",
     "tailwindcss": "^0.7.2",
+    "twitter": "^1.7.1",
     "uuid": "^3.3.2",
     "vue-carousel": "^0.16.2",
     "vue-template-compiler": "^2.6.6",
