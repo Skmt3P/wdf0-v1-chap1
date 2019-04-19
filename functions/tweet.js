@@ -1,4 +1,5 @@
 exports.tweetNuxtPage = (db, title, id) => {
+  require('dotenv').config()
   const Twitter = require('twitter')
   const client = new Twitter({
     consumer_key: process.env.TW_CONSUMER_KEY,
@@ -8,6 +9,11 @@ exports.tweetNuxtPage = (db, title, id) => {
   })
   const url = `https://${process.env.FB_PROJECTID}.firebaseapp.com/${id}`
   const tweet = `[auto]firebase functionsからの自動投稿テスト 「${title}」( ${url} )`
+
+  console.log('client.consumer_key: ', client.consumer_key)
+  console.log('client.consumer_secret: ', client.consumer_secret)
+  console.log('client.access_token_key: ', client.access_token_key)
+  console.log('client.access_token_secret: ', client.access_token_secret)
 
   client.post(
     'statuses/update',

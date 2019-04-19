@@ -1,9 +1,6 @@
 <template>
   <div class="container">
-    <div 
-      v-if="isLoaded" 
-      class="columns">
-      <TheUserInfo class="column is-narrow is-3" />
+    <div class="columns">
       <TheTimeLine class="column is-narrow is-9" />
     </div>
   </div>

@@ -3,33 +3,23 @@
 * Color Pallet Ref: https: //palx.jxnblk.com/
 */
 
-// Theme A (oi-deyo MACHIDA color)
-$theme-A-0 : #ebeefe;
-$theme-A-1 : #d5dcfc;
-$theme-A-2 : #bcc8fb;
-$theme-A-3 : #9fb1fa;
-$theme-A-4 : #7b94f8;
-$theme-A-5 : #4a6cf6;
-$theme-A-6 : #4261dd;
-$theme-A-7 : #3a55c1;
-$theme-A-8 : #2f469f;
-$theme-A-9 : #213170;
-
-// Theme B (oi-deyo SAGAMIHARA color)
-$theme-B-0 : #e7fae8;
-$theme-B-1 : #cef4d0;
-$theme-B-2 : #b1eeb5;
-$theme-B-3 : #91e795;
-$theme-B-4 : #6ade70;
-$theme-B-5 : #38d440;
-$theme-B-6 : #32bf39;
-$theme-B-7 : #2ca832;
-$theme-B-8 : #248c2a;
-$theme-B-9 : #1a651e;
+// Theme A (oi-deyo JavaScript color)
+// You can make color pallet on like website
+// ex) https://www.colorhexa.com/
+$theme-A-0 : #f9f1bb; // the most thin color 
+$theme-A-1 : #f8eda9;
+$theme-A-2 : #f6ea97;
+$theme-A-3 : #f5e685;
+$theme-A-4 : #f3e273;
+$theme-A-5 : #f2df61;
+$theme-A-6 : #f0db4f;
+$theme-A-7 : #eed73d;
+$theme-A-8 : #edd42b;
+$theme-A-9 : #ebd019; // the darkest color 
 
 // TheLoading.vue
-$text-color : $theme-A-4;
-$text-shadow : $theme-A-2;
+$text-color : $theme-A-4; // 初期ロードメッセージの文字色
+$text-shadow : $theme-A-2; // 初期ロードメッセージの文字の影色
 
 // TheNavbar.vue
 $navbar-bgcolor : $theme-A-5;

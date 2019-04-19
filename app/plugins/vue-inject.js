@@ -2,12 +2,13 @@
 import Vue from 'vue'
 
 // test method
-Vue.prototype.$clientInjectedFunction = string =>
-  console.log('This is an example', string)
+// Vue.prototype.$clientInjectedFunction = string =>
+//   console.log('This is an example', string)
 
+// Webアプリケーションで使用する定数を一元管理
 Vue.prototype.$constant = {
   // TheNavbar.vue
-  siteTitle: 'Oi-deyo MACHIDA & SAGAMIHARA',
+  siteTitle: 'Oi-deyo JavaScript',
   test2: {
     test21: ['これはテス2-1', 'this is test2-1'],
     test22: 'test2-2 DAYO'
