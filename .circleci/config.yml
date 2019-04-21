@@ -35,7 +35,22 @@ jobs:
           command: cd functions && yarn add firebase-functions@latest firebase-admin@latest --save  && yarn install
 
       - run:
-          name: Add .env(Functions)
+          name: Add .env(Server)
+          command: |
+            cd functions &&
+            echo "FIREBASE_API_KEY=$FB_API_KEY" > .env
+            echo "FIREBASE_AUTH_DOMAIN=$FB_AUTH_DOMAIN" >> .env
+            echo "FIREBASE_DATABASE_URL=$FB_DATABASE_URL" >> .env
+            echo "FIREBASE_PROJECT_ID=$FB_PROJECTID" >> .env
+            echo "FIREBASE_STORAGE_BUCKET=$FB_STORAGE_BUCKET" >> .env
+            echo "FIREBASE_MESSAGING_SENDER_ID=$FB_MESSAGING_SENDER_ID" >> .env
+            echo "TW_CONSUMER_KEY=$TW_CONSUMER_KEY" >> .env
+            echo "TW_CONSUMER_SECRET=$TW_CONSUMER_SECRET" >> .env
+            echo "TW_ACCESS_TOKEN_KEY=$TW_ACCESS_TOKEN_KEY" >> .env
+            echo "TW_ACCESS_TOKEN_SECRET=$TW_ACCESS_TOKEN_SECRET" >> .env
+
+      - run:
+          name: Add .env(Client)
           command: |
             echo "FIREBASE_API_KEY=$FB_API_KEY" > .env
             echo "FIREBASE_AUTH_DOMAIN=$FB_AUTH_DOMAIN" >> .env
