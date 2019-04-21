@@ -7,13 +7,8 @@ exports.tweetNuxtPage = (db, title, id) => {
     access_token_key: process.env.TW_ACCESS_TOKEN_KEY,
     access_token_secret: process.env.TW_ACCESS_TOKEN_SECRET
   })
-  const url = `https://${process.env.FB_PROJECTID}.firebaseapp.com/${id}`
+  const url = `https://${process.env.FIREBASE_PROJECT_ID}.firebaseapp.com/${id}`
   const tweet = `[auto]firebase functionsからの自動投稿テスト 「${title}」( ${url} )`
-
-  console.log('client.consumer_key: ', client.consumer_key)
-  console.log('client.consumer_secret: ', client.consumer_secret)
-  console.log('client.access_token_key: ', client.access_token_key)
-  console.log('client.access_token_secret: ', client.access_token_secret)
 
   client.post(
     'statuses/update',
