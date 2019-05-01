@@ -11,44 +11,45 @@ if (process.browser) {
   firestore.settings(settings)
 }
 
-const usersCollection = firestore.collection('users')
+// const usersCollection = firestore.collection('users')
 const postsCollection = firestore
   .collection('posts')
   .orderBy('createdAt', 'desc')
-const provider = new firebase.auth.GoogleAuthProvider()
+// const provider = new firebase.auth.GoogleAuthProvider()
 
 Vue.use(Vuex)
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      user: null,
+      // user: null,
+      // users: [],
       post: null,
-      users: [],
       posts: [],
       isLoaded: false
     },
     getters: {
       posts: state => {
         return state.posts.map(post => {
-          post.user = state.users.find(user => user.email === post.from)
+          console.log('post:', post)
+          // post.user = state.users.find(user => user.email === post.from)
           return post
         })
       },
       post: state => {
         const post = state.post
         if (!post) return null
-        post.user = state.users.find(user => user.email === post.from)
+        // post.user = state.users.find(user => user.email === post.from)
         return post
       },
-      users: state => state.users,
-      user: state => state.user,
+      // users: state => state.users,
+      // user: state => state.user,
       isLoaded: state => state.isLoaded
     },
     mutations: {
-      setCredential(state, { user }) {
-        state.user = user
-      },
+      // setCredential(state, { user }) {
+      //   state.user = user
+      // },
       savePost(state, { post }) {
         state.post = post
       },
@@ -58,50 +59,50 @@ const createStore = () => {
       ...firebaseMutations
     },
     actions: {
-      async SET_CREDENTIAL({ commit }, { user }) {
-        if (!user) return
-        await usersCollection
-          .doc(user.email.replace('@', '_at_').replace(/\./g, '_dot_'))
-          .set({
-            name: user.displayName,
-            email: user.email,
-            icon: user.photoURL
-          })
-        commit('setCredential', { user })
-      },
+      // async SET_CREDENTIAL({ commit }, { user }) {
+      //   if (!user) return
+      //   await usersCollection
+      //     .doc(user.email.replace('@', '_at_').replace(/\./g, '_dot_'))
+      //     .set({
+      //       name: user.displayName,
+      //       email: user.email,
+      //       icon: user.photoURL
+      //     })
+      //   commit('setCredential', { user })
+      // },
       async INIT_SINGLE({ commit }, { id }) {
         console.log({
           commit
         })
-        if (!id) {
-          id = '4550748520-a0e04aed70214d11aaddacd95651b1b9'
-        }
+        // if (!id) {
+        //   id = '4550748520-a0e04aed70214d11aaddacd95651b1b9'
+        // }
         const snapshot = await firestore
           .collection('posts')
           .doc(id)
           .get()
         commit('savePost', { post: snapshot.data() })
       },
-      INIT_USERS: firebaseAction(({ bindFirebaseRef }) => {
-        bindFirebaseRef('users', usersCollection)
-      }),
+      // INIT_USERS: firebaseAction(({ bindFirebaseRef }) => {
+      //   bindFirebaseRef('users', usersCollection)
+      // }),
       INIT_POSTS: firebaseAction(({ bindFirebaseRef }) => {
         bindFirebaseRef('posts', postsCollection)
       }),
-      ADD_POST: firebaseAction((ctx, { id, email, body, createdAt }) => {
-        firestore
-          .collection('posts')
-          .doc(`${id}`)
-          .set({
-            id,
-            from: email,
-            body,
-            createdAt
-          })
-      }),
-      callAuth() {
-        firebase.auth().signInWithRedirect(provider)
-      },
+      // ADD_POST: firebaseAction((ctx, { id, email, body, createdAt }) => {
+      //   firestore
+      //     .collection('posts')
+      //     .doc(`${id}`)
+      //     .set({
+      //       id,
+      //       from: email,
+      //       body,
+      //       createdAt
+      //     })
+      // }),
+      // callAuth() {
+      //   firebase.auth().signInWithRedirect(provider)
+      // },
       loadComplete({ commit }) {
         commit('setIsLoaded', true)
       }

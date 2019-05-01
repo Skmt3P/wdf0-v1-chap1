@@ -1,3 +1,13 @@
+require('dotenv').config()
+const {
+  FB_API_KEY,
+  FB_AUTH_DOMAIN,
+  FB_DATABASE_URL,
+  FB_PROJECTID,
+  FB_STORAGE_BUCKET,
+  FB_MESSAGING_SENDER_ID
+} = process.env
+
 module.exports = {
   mode: 'universal',
   srcDir: 'app',
@@ -114,12 +124,12 @@ module.exports = {
   ** Build configuration
   */
   env: {
-    APIKEY: process.env.APIKEY,
-    AUTHDOMAIN: process.env.AUTHDOMAIN,
-    DATABASEURL: process.env.DATABASEURL,
-    PROJECTID: process.env.PROJECTID,
-    STORAGEBUCKET: process.env.STORAGEBUCKET,
-    MESSAGINGSENDERID: process.env.MESSAGINGSENDERID
+    FB_API_KEY,
+    FB_AUTH_DOMAIN,
+    FB_DATABASE_URL,
+    FB_PROJECTID,
+    FB_STORAGE_BUCKET,
+    FB_MESSAGING_SENDER_ID
   },
 
   build: {

@@ -1,6 +1,5 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import 'firebase/auth'
 
 const config = {
   apiKey: String(process.env.FB_API_KEY),
@@ -13,6 +12,5 @@ const config = {
 if (!firebase.apps.length) {
   firebase.initializeApp(config)
 }
-console.log(firebase.apps)
 
 export default firebase

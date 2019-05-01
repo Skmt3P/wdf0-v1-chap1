@@ -1,18 +1,18 @@
 <template lang="html">
   <li 
-    v-if="post.user" 
     class="media">
     <figure class="media-left">
-      <p class="image is-64x64"><img :src="post.user.icon" ></p>
+      <p class="image is-64x64"><img :src="`~/assets/${post.themeId}.png`"></p>
     </figure>
     <div class="media-content">
       <div class="content">
-        <p>
-          <strong>{{ post.user.name }}</strong> <br >
-          <span 
-            class="body" 
-            v-html="formattedPost" />
-        </p>
+        <div>
+          <strong>{{ post.themeName }}</strong>
+          <small class="text-right">{{ String(post.date.toDate()).slice(0,String(post.date.toDate()).indexOf('G')) }}</small>
+        </div>
+        <span 
+          class="body" 
+          v-html="formattedPost" />
       </div>
       <nav class="level is-mobile">
         <div class="level-left"/>
@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     formattedPost() {
-      return link(h(this.post.body))
+      return link(h(`【${this.post.tag}】${this.post.title}`))
     }
   }
 }
@@ -61,5 +61,8 @@ img {
 .body {
   display: inline-block;
   margin-top: 6px;
+}
+.text-right {
+  float: right;
 }
 </style>

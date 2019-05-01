@@ -2,20 +2,16 @@
   <div class="container">
     <div class="columns">
       <div
-        v-if="post && post.user"
+        v-if="formattedPost"
         class="column is-three-fifths is-offset-one-fifth"
       >
-        <h1 class="title text-is-centered">{{ post.user.name }}さんの投稿</h1>
+        <h1 class="title text-is-centered">{{ post.name }}さんの投稿</h1>
         <div class="card">
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img :src="post.user.icon">
-                </figure>
-              </div>
+              <div class="media-left"/>
               <div class="media-content">
-                <strong>{{ post.user.name }}</strong>
+                <strong>TEST</strong>
               </div>
             </div>
             <div class="content"><p v-html="formattedPost" /></div>
@@ -39,7 +35,6 @@ import { mapGetters } from 'vuex'
 export default {
   layout: 'single',
   async asyncData({ params, store }) {
-    await store.dispatch('INIT_USERS', params)
     await store.dispatch('INIT_SINGLE', params)
     return {
       id: params.id
@@ -59,7 +54,7 @@ export default {
   },
   computed: {
     formattedPost() {
-      return link(h(this.post ? this.post.body : ''))
+      return link(h(this.post ? this.post.title : ''))
     },
     ...mapGetters(['post'])
   }

@@ -2,12 +2,8 @@
   <div 
     class="timeline" 
     style="padding-top: 0;">
-    <TheTimeLinePostArea 
-      v-if="!!user" 
-      class="post-area" />
     <ul
       :style="{
-        'margin-top': !!user ? 'auto' : '32px',
         'padding-bottom': '16px'
       }"
       class="posts"
@@ -15,7 +11,6 @@
       <transition-group name="post">
         <AppPost
           v-for="post in posts"
-          v-if="post.user"
           :post="post"
           :key="post.id"
           class="post"
@@ -28,15 +23,13 @@
 <script>
 import AppPost from '~/components/AppPost.vue'
 import { mapGetters } from 'vuex'
-import TheTimeLinePostArea from '~/components/TheTimeLinePostArea.vue'
 
 export default {
   components: {
-    AppPost,
-    TheTimeLinePostArea
+    AppPost
   },
   computed: {
-    ...mapGetters(['user', 'posts'])
+    ...mapGetters(['posts'])
   }
 }
 </script>

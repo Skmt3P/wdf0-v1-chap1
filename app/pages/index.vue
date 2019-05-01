@@ -1,15 +1,15 @@
 <template>
-  <div class="container">
-    <div class="columns">
-      <TheTimeLine class="column is-narrow is-9" />
+  <div class="margin-zero">
+    <div class="container">
+      <div class="columns">
+        <TheTimeLine class="column is-middle" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import auth from '~/plugins/auth'
 import TheTimeLine from '~/components/TheTimeLine.vue'
-import TheUserInfo from '~/components/TheUserInfo.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -24,23 +24,14 @@ export default {
     }
   },
   components: {
-    TheTimeLine,
-    TheUserInfo
+    TheTimeLine
   },
   computed: {
-    ...mapGetters(['user', 'users', 'posts', 'isLoaded'])
+    ...mapGetters(['posts', 'isLoaded'])
   },
   async mounted() {
-    let user
-    if (!this.user) user = await auth()
     await Promise.all([
-      this.user
-        ? Promise.resolve()
-        : this.$store.dispatch('SET_CREDENTIAL', { user: user || null }),
-      this.posts.length
-        ? Promise.resolve()
-        : this.$store.dispatch('INIT_POSTS'),
-      this.users.length ? Promise.resolve() : this.$store.dispatch('INIT_USERS')
+      this.posts.length ? Promise.resolve() : this.$store.dispatch('INIT_POSTS')
     ])
     this.loadComplete()
   },
@@ -52,6 +43,8 @@ export default {
 
 <style scoped>
 .container {
+  width: 100% !important;
+  margin: auto !important;
   display: flex;
   align-items: flex-start;
   /* flex-direction: column; */
