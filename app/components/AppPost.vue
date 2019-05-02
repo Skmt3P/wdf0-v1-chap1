@@ -2,7 +2,7 @@
   <li 
     class="media">
     <figure class="media-left">
-      <p class="image is-64x64"><img :src="`~/assets/${post.themeId}.png`"></p>
+      <p class="image is-middle is-64x64"><img :src="img_src"></p>
     </figure>
     <div class="media-content">
       <div class="content">
@@ -41,6 +41,11 @@ export default {
       default() {}
     }
   },
+  data() {
+    return {
+      img_src: require(`../assets/img/${this.post.themeId}.png`)
+    }
+  },
   computed: {
     formattedPost() {
       return link(h(`【${this.post.tag}】${this.post.title}`))
@@ -62,6 +67,15 @@ img {
   display: inline-block;
   margin-top: 6px;
 }
+
+.media {
+  background-color: white;
+  border-width: 1px;
+  border-color: gray;
+  padding: 10px;
+  border-radius: 10px 10px 10px 10px;
+}
+
 .text-right {
   float: right;
 }

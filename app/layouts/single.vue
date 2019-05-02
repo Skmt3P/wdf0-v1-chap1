@@ -1,9 +1,27 @@
 <template>
-  <div id="app"><nuxt /></div>
+  <div id="app">
+    <div class="wrapper">
+      <TheNavbar />
+      <nuxt />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-#app {
-  background: #e6ecf0;
+<script>
+import TheNavbar from '~/components/TheNavbar.vue'
+
+export default {
+  components: {
+    TheNavbar
+  }
+}
+</script>
+
+<style scoped lang="scss">
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff;
+  padding: 0px 32px 32px 32px;
 }
 </style>

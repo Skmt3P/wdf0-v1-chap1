@@ -19,12 +19,13 @@
         class="right-menu flex-grow sm:flex sm:items-center sm:w-auto">
         <li class="text-sm sm:flex-grow">
           <a 
-            href="#responsive-header" 
+            href="/" 
             class="no-underline block mt-4 sm:inline-block sm:mt-0  mr-4">
             Top
           </a>
           <a 
-            href="#responsive-header" 
+            href="https://twitter.com/oijavascript" 
+            target="_blank"
             class="no-underline block mt-4 sm:inline-block sm:mt-0 s mr-4">
             Twitter
           </a>

@@ -31,25 +31,17 @@ const createStore = () => {
     getters: {
       posts: state => {
         return state.posts.map(post => {
-          console.log('post:', post)
-          // post.user = state.users.find(user => user.email === post.from)
           return post
         })
       },
       post: state => {
         const post = state.post
         if (!post) return null
-        // post.user = state.users.find(user => user.email === post.from)
         return post
       },
-      // users: state => state.users,
-      // user: state => state.user,
       isLoaded: state => state.isLoaded
     },
     mutations: {
-      // setCredential(state, { user }) {
-      //   state.user = user
-      // },
       savePost(state, { post }) {
         state.post = post
       },
@@ -59,50 +51,19 @@ const createStore = () => {
       ...firebaseMutations
     },
     actions: {
-      // async SET_CREDENTIAL({ commit }, { user }) {
-      //   if (!user) return
-      //   await usersCollection
-      //     .doc(user.email.replace('@', '_at_').replace(/\./g, '_dot_'))
-      //     .set({
-      //       name: user.displayName,
-      //       email: user.email,
-      //       icon: user.photoURL
-      //     })
-      //   commit('setCredential', { user })
-      // },
       async INIT_SINGLE({ commit }, { id }) {
         console.log({
           commit
         })
-        // if (!id) {
-        //   id = '4550748520-a0e04aed70214d11aaddacd95651b1b9'
-        // }
         const snapshot = await firestore
           .collection('posts')
           .doc(id)
           .get()
         commit('savePost', { post: snapshot.data() })
       },
-      // INIT_USERS: firebaseAction(({ bindFirebaseRef }) => {
-      //   bindFirebaseRef('users', usersCollection)
-      // }),
       INIT_POSTS: firebaseAction(({ bindFirebaseRef }) => {
         bindFirebaseRef('posts', postsCollection)
       }),
-      // ADD_POST: firebaseAction((ctx, { id, email, body, createdAt }) => {
-      //   firestore
-      //     .collection('posts')
-      //     .doc(`${id}`)
-      //     .set({
-      //       id,
-      //       from: email,
-      //       body,
-      //       createdAt
-      //     })
-      // }),
-      // callAuth() {
-      //   firebase.auth().signInWithRedirect(provider)
-      // },
       loadComplete({ commit }) {
         commit('setIsLoaded', true)
       }

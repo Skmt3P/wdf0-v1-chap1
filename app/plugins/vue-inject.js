@@ -1,10 +1,6 @@
 // Context Injecting for Client side
 import Vue from 'vue'
 
-// test method
-// Vue.prototype.$clientInjectedFunction = string =>
-//   console.log('This is an example', string)
-
 // Webアプリケーションで使用する定数を一元管理
 Vue.prototype.$constant = {
   // TheNavbar.vue
